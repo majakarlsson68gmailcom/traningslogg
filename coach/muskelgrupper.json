@@ -1,5 +1,5 @@
 {
-  "_kommentar": "Fraktionell setberäkning per övning: direkt 1,0, synergist 0,5 (Pelland m.fl. 2025, se AVSTAMNINGAR.md 2026-07-29). Läses av scripts/veckorapport.mjs. Ägs av coachen — utkast 2026-09-03, räknat baklänges ur 2026-07-29-postens siffror för bröst, bakre delt, vader, quadriceps, hamstrings, triceps, sidodelt och främre delt; övriga grupper (rygg, biceps, säte, mage) är coachens bedömning och ska stämmas av med Maja.",
+  "_kommentar": "Fraktionell setberäkning per övning: direkt 1,0, synergist 0,5 (Pelland m.fl. 2025). Läses av scripts/veckorapport.mjs. Ägs av coachen: varje ny övning i programmet läggs till här, annars räknas den inte i volymen.",
   "grupper": {
     "brost": "Bröst",
     "rygg": "Rygg (lats/övre rygg)",

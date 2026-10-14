@@ -4,18 +4,18 @@ En mobilapp (PWA) för att logga styrkepass mellan seten. Jag byggde den för mi
 
 > All träningsdata i det här repot är påhittad. Min riktiga logg och mitt program ligger i ett separat privat repo.
 
-## Prova appen
-
-Appen har ett demoläge som öppnas med `?demo` i slutet av adressen. Demon visar ett påhittat program och sex veckors påhittad logg, flyttad så att den slutar i innevarande vecka. Det går att logga set, använda vilotimern och se personbästa. Allt som loggas i demon sparas bara i webbläsaren och skickas ingenstans.
-
-Demon är byggd för telefonen och fungerar bäst i porträttläge.
-
 | | |
 |---|---|
 | Roll | Interaktionsdesign och utveckling, soloprojekt |
 | Tid | Juli 2026 och pågående |
 | Teknik | Vanilla JavaScript (ES-moduler), IndexedDB, service worker, GitHub Contents API, Node.js-skript, GitHub Actions, Vercel |
 | Storlek | Cirka 3 000 rader JavaScript, inga npm-beroenden |
+
+## Prova appen
+
+Appen har ett demoläge som öppnas med `?demo` i slutet av adressen. Demon visar ett påhittat program och sex veckors påhittad logg, flyttad så att den slutar i innevarande vecka. Det går att logga set, använda vilotimern och se personbästa. Allt som loggas i demon sparas bara i webbläsaren och skickas ingenstans.
+
+Demon är byggd för telefonen och fungerar bäst i porträttläge. Den som vill använda appen för sin egen träning hittar en guide under [Använda appen på riktigt](#använda-appen-på-riktigt).
 
 ## Problemet
 
@@ -64,6 +64,49 @@ Programfilen skrivs för hand, och ett fel i den syns inte direkt eftersom appen
 
 Den rena logiken har tester, det vill säga regeln för personbästa, veckomodellen och formatet på loggraderna. Resten av appen är gränssnitt och lagring i webbläsaren och testas där. Sajten skickas med en strikt Content Security Policy som bara tillåter nätverksanrop till den egna domänen och GitHubs API.
 
+## Använda appen på riktigt
+
+Var och en som använder appen har en egen privat kopia av det här repot. Kopian är personens databas, och coachen i Claude Code läser och skriver där. Ingen träningsdata passerar mig eller någon server.
+
+Det här behövs:
+
+- ett GitHub-konto
+- Claude Code, som kräver ett betalt Claude-abonnemang, för coachen
+- git och Node.js 24 på datorn
+
+### 1. Skapa en egen kopia
+
+Klicka på **Use this template** högst upp på repots GitHub-sida och välj **Create a new repository**. Välj **Private**, så att träningsdatan bara syns för ägaren.
+
+### 2. Skapa en token till appen
+
+Appen behöver en nyckel (token) för att läsa programmet och spara loggen i kopian. Den skapas på GitHub under Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.
+
+- Under **Repository access**, välj **Only select repositories** och sedan kopian.
+- Under **Permissions**, ge **Contents** behörigheten **Read and write**.
+
+Token visas bara en gång, så kopiera den direkt.
+
+### 3. Öppna appen i telefonen
+
+Appen ligger på samma adress som demon, men utan `?demo`. Tryck på Inställningar och fyll i repot som `användarnamn/reponamn`, branch `main` och token. Token sparas bara i telefonen. Lägg sedan till appen på hemskärmen, så öppnas den som en vanlig app.
+
+Den som hellre vill köra en egen version av appen kan publicera sin kopia på Vercel. Inställningarna finns redan i repot, och bara appmappen publiceras, vilket gör att träningsdatan aldrig hamnar på sajten.
+
+### 4. Få ett första program av coachen
+
+Klona kopian till datorn och slå på kontrollen som stoppar en trasig programfil innan den sparas:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Öppna sedan mappen i Claude Code och skriv `/coach`. Coachen ser att profilen är tom och börjar med ett startsamtal. Den frågar om bakgrund, mål, utrustning och tid, och föreslår sedan ett program. När förslaget är godkänt skriver coachen programmet till repot, och appen hämtar det nästa gång den öppnas.
+
+### 5. Träna och stäm av
+
+Passen loggas i appen. Var fjärde vecka gör coachen en avstämning: den läser loggen, föreslår ändringar och skriver dem till programmet först efter ett ja. Varje beslut sparas i `coach/AVSTAMNINGAR.md`.
+
 ## Köra lokalt
 
 Appen kräver ingen byggprocess. Starta en statisk server i repots rot:
@@ -92,7 +135,7 @@ Appen är byggd med Claude Code som AI-parprogrammerare. Jag har stått för kra
 
 ## Nästa steg
 
-Appen är byggd för en användare. För att fler ska kunna använda den behövs inloggning, en riktig databas och ett sätt att skapa sitt eget program i appen. I dag skrivs programmet som en JSON-fil. Det är nästa projekt jag vill ta mig an.
+Fler kan använda appen i dag, men var och en behöver ett GitHub-konto och Claude Code. För att den ska fungera för vem som helst behövs inloggning, en riktig databas och ett sätt att skapa sitt eget program direkt i appen. Det är nästa projekt jag vill ta mig an.
 
 ## Licenser
 
