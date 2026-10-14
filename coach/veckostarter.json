@@ -1,0 +1,4 @@
+{
+  "_kommentar": "EXEMPELDATA. Manuella veckostarter (appens 'Avsluta veckan'). Appen sparar dem bara på telefonen, så de förs in här för att scripts/veckorapport.mjs ska bokföra veckorna som appen gör. Datum = första dagen i den nya veckan. Tom lista = varje vecka är en vanlig ISO-vecka.",
+  "starter": []
+}

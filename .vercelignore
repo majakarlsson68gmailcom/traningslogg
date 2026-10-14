@@ -1,0 +1,20 @@
+# Vad som ALDRIG laddas upp till Vercel. Repot är datalagret — deployen är bara appskalet.
+#
+# data/ utesluts medvetet (avstämt 2026-07-26): loggen och programmet är privata,
+# och en deploy-URL är publik. Appen hämtar program.json via Contents API med
+# token i stället, och skriver loggen samma väg. Se ARCHITECTURE.md.
+
+data/
+coach/
+
+# Projektdokumentation och verktygsartefakter hör hemma i repot, inte på deployen.
+*.md
+.claude/
+.playwright-cli/
+
+# Hemligheter. CLI-deploy laddar upp arbetskatalogen som den ser ut lokalt —
+# inte det som är committat — så en oskyddad tokenfil hade följt med.
+github-token.txt
+*token*.txt
+.env
+.env.*

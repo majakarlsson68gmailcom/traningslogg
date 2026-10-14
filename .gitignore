@@ -1,0 +1,14 @@
+.DS_Store
+# Lokala Claude-inställningar hålls ute; coach-skillen i .claude/skills/ versioneras.
+.claude/*
+!.claude/skills/
+.playwright-cli/
+.vercel/
+
+# Hemligheter får aldrig hamna i repot. Token hör hemma i appens Inställningar
+# (localStorage på enheten) — en fil här är bara en tillfällig mellanlandning.
+github-token.txt
+*token*.txt
+.env
+.env.*
+.vercel

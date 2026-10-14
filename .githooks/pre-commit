@@ -1,0 +1,9 @@
+#!/bin/sh
+# Hookarna ligger i repot (core.hooksPath=.githooks) så de överlever en ny klon.
+# Aktivera på en ny maskin med:  git config core.hooksPath .githooks
+#
+# Båda skripten avgör själva om de har något att göra utifrån vad som är stagat,
+# så ordningen kostar inget: validera först, stoppa commiten innan cachen bumpas.
+set -e
+node scripts/validera-program.mjs
+node scripts/bump-sw-cache.mjs

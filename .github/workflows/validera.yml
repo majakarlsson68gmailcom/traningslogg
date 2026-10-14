@@ -1,0 +1,71 @@
+# Repots enda automatiska kontroller. Två saker körs här:
+#
+# 1. validera-program.mjs — samma kontroll som pre-commit-hooken. Det här är
+#    lagret som fångar en commit där hooken inte körde. Två fall som är verkliga:
+#    redigering direkt i GitHubs webbgränssnitt, och en maskin där
+#    `git config core.hooksPath .githooks` aldrig sattes — hookarna ligger i
+#    repot men är opt-in per klon, så en ny dator har dem avstängda tills någon
+#    minns det. Kan inte blockera pushen, men gör felet högljutt i stället för
+#    tyst: ett trasigt program.json märks annars aldrig, eftersom appen faller
+#    tillbaka på sin cache.
+#
+#    (Lagret motiverades först av en coach med skrivrätt via API:t. Det visade
+#    sig 2026-07-29 att Claude Cowork inte kan skriva till repot alls. Sedan
+#    2026-09-03 bor coachen i Claude Code och skriver programfilen själv, så
+#    det ursprungliga skälet gäller igen — och skälen ovan står kvar.)
+#
+# 2. test-pb.mjs — PB-regeln. Ren logik med fler kantfall än den ser ut att ha,
+#    och den syns bara som en liten stjärna i UI:t. Går den sönder blir den bara
+#    tyst, eller firar fel set. Resten av appen är DOM och IndexedDB och
+#    verifieras i webbläsaren i stället.
+#
+# 3. test-vecka.mjs — veckomodellen. Avgör vilka set som räknas till vilken
+#    vecka och vilken nyckel statusrader får i en append-only-logg. Räknar den
+#    fel skrivs rader som inte går att ta bort, och felet syns först när
+#    coachen läser volymen.
+#
+# 4. test-loggrader.mjs — loggradernas kontrakt åt båda håll (serialisering i
+#    sync.js, tolkning i aterlasning.js). Samma tysthet som ovan: en radtyp som
+#    faller mellan stolarna skrivs som skräp till en logg ingen kan städa, eller
+#    försvinner vid återläsning utan att något säger ifrån.
+name: Validera
+
+on:
+  push:
+    paths:
+      - 'data/program.json'
+      - 'app/js/pb.js'
+      - 'app/js/format.js'
+      - 'app/js/veckostatus.js'
+      - 'app/js/sync.js'
+      - 'app/js/aterlasning.js'
+      - 'scripts/**'
+      - '.github/workflows/validera.yml'
+  pull_request:
+    paths:
+      - 'data/program.json'
+      - 'app/js/pb.js'
+      - 'app/js/format.js'
+      - 'app/js/veckostatus.js'
+      - 'app/js/sync.js'
+      - 'app/js/aterlasning.js'
+      - 'scripts/**'
+      - '.github/workflows/validera.yml'
+
+# Jobbet läser bara repot. Utan blocket ärver GITHUB_TOKEN repots
+# standardbehörigheter, som kan vara skrivande — mer än skripten behöver.
+permissions:
+  contents: read
+
+jobs:
+  validera:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/validera-program.mjs data/program.json
+      - run: node scripts/test-pb.mjs
+      - run: node scripts/test-vecka.mjs
+      - run: node scripts/test-loggrader.mjs

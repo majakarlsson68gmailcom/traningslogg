@@ -1,0 +1,25 @@
+/* Design-tokens — färgerna kommer från Figma-filens variabler. */
+:root {
+  --bg: #313131;            /* background */
+  --primary: #dc5800;       /* primary */
+  --primary-djup: #b84a00;
+  --accent: #ff8c3f;        /* current-day */
+  --gron: #4cd964;          /* dagens dag i veckoraden */
+  --text: #efefef;          /* text-on-color */
+  --text-dim: rgba(239, 239, 239, 0.62);
+
+  --kort: #3d3d3d;
+  --kort-rad: #4a4a4a;      /* setrader, cirklar */
+  --chip: #8f8f8f;
+  --radera: #ff5f56;        /* svep-radering av set */
+  --varning: #ff5f56;       /* inaktuellt program — samma röd, annan betydelse */
+
+  --radie: 20px;
+  --radie-liten: 10px;
+  --tap-min: 44px;
+
+  --font-display: 'Anton', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --skugga: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
