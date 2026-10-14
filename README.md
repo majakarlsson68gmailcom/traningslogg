@@ -139,4 +139,6 @@ Fler kan använda appen i dag, men var och en behöver ett GitHub-konto och Clau
 
 ## Licenser
 
-Typsnittet Anton används under SIL Open Font License 1.1, se [app/fonts/OFL.txt](app/fonts/OFL.txt).
+Koden är licensierad under MIT, se [LICENSE](LICENSE). Den får användas, ändras och delas fritt, så länge licenstexten följer med.
+
+Typsnittet Anton har en egen licens, SIL Open Font License 1.1, se [app/fonts/OFL.txt](app/fonts/OFL.txt).
