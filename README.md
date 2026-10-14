@@ -13,7 +13,9 @@ En mobilapp (PWA) för att logga styrkepass mellan seten. Jag byggde den för mi
 
 ## Prova appen
 
-Appen har ett demoläge som öppnas med `?demo` i slutet av adressen. Demon visar ett påhittat program och sex veckors påhittad logg, flyttad så att den slutar i innevarande vecka. Det går att logga set, använda vilotimern och se personbästa. Allt som loggas i demon sparas bara i webbläsaren och skickas ingenstans.
+**[Öppna demon](https://traningslogg-ecru.vercel.app/?demo)**
+
+Demon visar ett påhittat program och sex veckors påhittad logg, flyttad så att den slutar i innevarande vecka. Det går att logga set, använda vilotimern och se personbästa. Allt som loggas i demon sparas bara i webbläsaren och skickas ingenstans.
 
 Demon är byggd för telefonen och fungerar bäst i porträttläge. Den som vill använda appen för sin egen träning hittar en guide under [Använda appen på riktigt](#använda-appen-på-riktigt).
 
@@ -89,7 +91,7 @@ Token visas bara en gång, så kopiera den direkt.
 
 ### 3. Öppna appen i telefonen
 
-Appen ligger på samma adress som demon, men utan `?demo`. Tryck på Inställningar och fyll i repot som `användarnamn/reponamn`, branch `main` och token. Token sparas bara i telefonen. Lägg sedan till appen på hemskärmen, så öppnas den som en vanlig app.
+Appen ligger på [traningslogg-ecru.vercel.app](https://traningslogg-ecru.vercel.app/), samma adress som demon men utan `?demo`. Tryck på Inställningar och fyll i repot som `användarnamn/reponamn`, branch `main` och token. Token sparas bara i telefonen. Lägg sedan till appen på hemskärmen, så öppnas den som en vanlig app.
 
 Den som hellre vill köra en egen version av appen kan publicera sin kopia på Vercel. Inställningarna finns redan i repot, och bara appmappen publiceras, vilket gör att träningsdatan aldrig hamnar på sajten.
 
