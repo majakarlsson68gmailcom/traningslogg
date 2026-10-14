@@ -7,7 +7,11 @@
 // (localId, synced, tsEpoch) får aldrig hamna i JSONL — serialiseringen i
 // sync.js använder en allowlist som garanterar det.
 
-const DB_NAMN = 'traningslogg';
+import { AR_DEMO } from './lage.js';
+
+// Demon har en egen databas. Det besökaren loggar i demon kan därför aldrig
+// blandas med riktig historik, och riktig historik syns aldrig i demon.
+const DB_NAMN = AR_DEMO ? 'traningslogg-demo' : 'traningslogg';
 let dbPromise = null;
 
 function oppna() {
@@ -133,6 +137,16 @@ export async function markSynced(localIds) {
       await vantaPa(s.put(rad));
     }
   }
+}
+
+// Raderar hela databasen. Används bara av demons "Börja om". Anslutningen måste
+// stängas först, annars blockeras raderingen tills sidan laddas om.
+export async function raderaDatabas() {
+  if (dbPromise) {
+    (await dbPromise).close();
+    dbPromise = null;
+  }
+  await vantaPa(indexedDB.deleteDatabase(DB_NAMN));
 }
 
 /* ---------- program ---------- */

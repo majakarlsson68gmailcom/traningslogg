@@ -85,7 +85,7 @@ function dag(datum) {
   return new Date(`${datum}T12:00`);
 }
 
-function plusDagar(datum, n) {
+export function plusDagar(datum, n) {
   const d = dag(datum);
   d.setDate(d.getDate() + n);
   return todayISO(d);

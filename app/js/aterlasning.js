@@ -68,8 +68,8 @@ export function tolkaRad(text) {
 
 // Statusrader (överhoppade pass) har sin egen bokföring i settings. Speglas de
 // inte vid import erbjuder sig veckoavstämningen att emittera rader som redan
-// finns i loggen.
-async function aterstallVeckoposter(rader) {
+// finns i loggen. Exporterad för demo.js, som läser in sin logg på samma sätt.
+export async function aterstallVeckoposter(rader) {
   const perVecka = new Map();
   for (const rad of rader) {
     if (!rad.status || !rad.vecka) continue;

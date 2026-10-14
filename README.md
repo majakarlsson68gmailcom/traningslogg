@@ -2,7 +2,13 @@
 
 En mobilapp (PWA) för att logga styrkepass mellan seten. Jag byggde den för min egen träning och har loggat mina pass i den sedan juli 2026. Appen fungerar offline, har ingen backend och sparar all data som textfiler i ett GitHub-repo.
 
-> All träningsdata i det här repot är påhittad exempeldata. Min riktiga logg och mitt program ligger i ett separat privat repo.
+> All träningsdata i det här repot är påhittad. Min riktiga logg och mitt program ligger i ett separat privat repo.
+
+## Prova appen
+
+Appen har ett demoläge som öppnas med `?demo` i slutet av adressen. Demon visar ett påhittat program och sex veckors påhittad logg, flyttad så att den slutar i innevarande vecka. Det går att logga set, använda vilotimern och se personbästa. Allt som loggas i demon sparas bara i webbläsaren och skickas ingenstans.
+
+Demon är byggd för telefonen och fungerar bäst i porträttläge.
 
 | | |
 |---|---|
@@ -66,17 +72,15 @@ Appen kräver ingen byggprocess. Starta en statisk server i repots rot:
 python3 -m http.server 8123
 ```
 
-Öppna sedan `http://localhost:8123/app/`. Appen läser exempelprogrammet direkt från `data/`, och set som loggas sparas i webbläsaren. Synk till ett eget repo kräver en fingranulär GitHub-token med skrivrätt till det repot och ställs in under Inställningar.
+Öppna sedan `http://localhost:8123/app/?demo` för demon. Utan `?demo` läser appen programmet i `data/program.json`, och synk till ett eget repo kräver en fingranulär GitHub-token med skrivrätt till det repot. Den ställs in under Inställningar.
 
-Testerna och veckorapporten körs med Node.js 24:
-
-```bash
-node scripts/test-pb.mjs && node scripts/test-vecka.mjs && node scripts/test-loggrader.mjs
-```
+Testerna körs med Node.js 24:
 
 ```bash
-node scripts/veckorapport.mjs --till 2026-10-11 --veckor 6
+node scripts/test-pb.mjs && node scripts/test-vecka.mjs && node scripts/test-loggrader.mjs && node scripts/test-demo.mjs
 ```
+
+Demons data byggs om från `data/program.json` med `node scripts/bygg-demo.mjs`. Veckorapporten (`node scripts/veckorapport.mjs`) läser den egna loggen i `data/logg/`, som är tom i det här repot.
 
 ## Dokumentation
 

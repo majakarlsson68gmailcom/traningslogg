@@ -47,6 +47,7 @@ button {
 
 .laddar, .felruta { padding: 40px 8px; color: var(--text-dim); text-align: center; }
 .felruta strong { display: block; color: var(--text); margin-bottom: 8px; }
+a.knapp-diskret { text-decoration: none; }
 .felruta-knappar {
   display: flex;
   flex-direction: column;
@@ -201,6 +202,13 @@ button {
 .lop-falt label { flex: 1; min-width: 0; }
 .lop-falt input { width: 100%; box-sizing: border-box; }
 
+
+/* Demoläget (?demo) ska synas direkt, så att ingen tar exempeldatan för någons riktiga. */
+.demorad {
+  margin: -16px 0 24px;
+  color: var(--accent);
+  font-size: 14px;
+}
 
 .veckosummering {
   margin: -24px 0 20px;

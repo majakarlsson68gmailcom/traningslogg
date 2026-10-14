@@ -14,6 +14,7 @@ import { mmss, todayISO, foregaendeVecka } from './format.js';
 import { avstamningFor, veckoState } from './veckostatus.js';
 import { aterlasVidBehov } from './aterlasning.js';
 import { el, esc, toast } from './dom.js';
+import { AR_DEMO } from './lage.js';
 import { IKON } from './ikoner.js';
 import * as valjPass from './views/valj-pass.js';
 import * as passVy from './views/pass.js';
@@ -109,6 +110,8 @@ let forraRouteNyckel = null;
 // programmet via Contents API, vilket kräver token — och token-fältet bor
 // annars bara i footern på "Välj pass", som inte renderas när programmet
 // saknas. Utan den här knappen är första starten på en ny enhet en låst dörr.
+// Länken till demon finns för den som hamnar här utan eget repo: en tom app
+// som ber om en token visar ingenting av hur den fungerar.
 function felruta(state) {
   const ruta = el(`
     <div class="felruta">
@@ -117,6 +120,7 @@ function felruta(state) {
       <div class="felruta-knappar">
         <button class="knapp primar" data-installningar>${IKON.reglage} Inställningar</button>
         <button class="knapp-diskret" data-forsok-igen>${IKON.aterstall} Försök igen</button>
+        ${AR_DEMO ? '' : '<a class="knapp-diskret" href="./?demo">Prova demon med exempeldata</a>'}
       </div>
     </div>`);
 

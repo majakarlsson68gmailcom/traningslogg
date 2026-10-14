@@ -1,7 +1,7 @@
 {
   "version": 3,
   "uppdaterad": "2026-09-28",
-  "kommentar": "EXEMPELDATA — påhittat program för en påhittad person, för att visa formatet. Upper/Lower, fyra pass i veckan plus en löprunda. Avstämning 2026-09-28: knäböj, RDL och lutande hantelpress höjs efter att repstaket nåtts vid mål-RIR. Leg extension ny i Lower 2, kalibreras första passet.",
+  "kommentar": "EXEMPELDATA — påhittat program för en påhittad person, för att visa formatet. Upper/Lower, fyra pass i veckan plus en löprunda. Senaste avstämningen: knäböj, RDL och lutande hantelpress höjs efter att repstaket nåtts vid mål-RIR. Leg extension ny i Lower 2, kalibreras första passet.",
   "ovningsnamn": {
     "axelpress_hantlar": "Axelpress hantlar",
     "bicepscurl_kabel": "Bicepscurl kabel",
@@ -42,8 +42,8 @@
       "id": "lower1",
       "namn": "Lower 1",
       "ovningar": [
-        {"id": "knaboj_smith", "namn": "Knäböj smith", "set": 3, "reps": "8-12", "vikt": 55, "rir_mal": 2, "vila_sek": 180, "kommentar": "Höjd 50→55 vid avstämningen 2026-09-28. Räkna med 8-9 reps första passet.", "alternativ": ["benpress", "hackliftmaskin"]},
-        {"id": "rdl", "namn": "Rumänsk marklyft", "set": 3, "reps": "8-12", "vikt": 65, "rir_mal": 2, "vila_sek": 150, "kommentar": "Höjd 60→65 vid avstämningen 2026-09-28.", "alternativ": ["larcurl_liggande"]},
+        {"id": "knaboj_smith", "namn": "Knäböj smith", "set": 3, "reps": "8-12", "vikt": 55, "rir_mal": 2, "vila_sek": 180, "kommentar": "Höjd 50→55 vid senaste avstämningen. Räkna med 8-9 reps första passet.", "alternativ": ["benpress", "hackliftmaskin"]},
+        {"id": "rdl", "namn": "Rumänsk marklyft", "set": 3, "reps": "8-12", "vikt": 65, "rir_mal": 2, "vila_sek": 150, "kommentar": "Höjd 60→65 vid senaste avstämningen.", "alternativ": ["larcurl_liggande"]},
         {"id": "benpress", "namn": "Benpress", "set": 3, "reps": "10-15", "vikt": 140, "rir_mal": 2, "vila_sek": 120, "alternativ": ["bulgarian_split_squat"]},
         {"id": "vadpress", "namn": "Vadpress", "set": 4, "reps": "10-15", "vikt": 40, "rir_mal": 1, "vila_sek": 90, "alternativ": ["staende_vadlyft"]},
         {"id": "crunch_maskin", "namn": "Crunch i maskin", "set": 3, "reps": "10-15", "vikt": 30, "rir_mal": 1, "vila_sek": 60, "alternativ": ["hangande_benlyft", "core_plankan"]}
@@ -53,7 +53,7 @@
       "id": "upper2",
       "namn": "Upper 2",
       "ovningar": [
-        {"id": "lutande_hantelpress", "namn": "Lutande hantelpress", "set": 3, "reps": "8-12", "vikt": 18, "rir_mal": 2, "vila_sek": 150, "kommentar": "Höjd 16→18 vid avstämningen 2026-09-28.", "alternativ": ["lutande_maskinpress"]},
+        {"id": "lutande_hantelpress", "namn": "Lutande hantelpress", "set": 3, "reps": "8-12", "vikt": 18, "rir_mal": 2, "vila_sek": 150, "kommentar": "Höjd 16→18 vid senaste avstämningen.", "alternativ": ["lutande_maskinpress"]},
         {"id": "latsdrag", "namn": "Latsdrag", "set": 3, "reps": "8-12", "vikt": 50, "rir_mal": 2, "vila_sek": 120, "alternativ": ["latsdrag_tungt"]},
         {"id": "kabelrodd_bred", "namn": "Kabelrodd brett grepp", "set": 3, "reps": "8-12", "vikt": 45, "rir_mal": 2, "vila_sek": 120, "alternativ": ["sittande_roddmaskin"]},
         {"id": "kabelcross", "namn": "Kabelcross", "set": 3, "reps": "10-15", "vikt": 10, "rir_mal": 1, "vila_sek": 90, "alternativ": ["hantelflyes"]},
@@ -67,7 +67,7 @@
       "ovningar": [
         {"id": "marklyft", "namn": "Marklyft", "set": 3, "reps": "5-8", "vikt": 90, "rir_mal": 2, "vila_sek": 180, "alternativ": ["trapbar_marklyft", "rdl"]},
         {"id": "bulgarian_split_squat", "namn": "Bulgarian split squat", "set": 3, "reps": "8-12/ben", "vikt": 14, "rir_mal": 2, "vila_sek": 120, "alternativ": ["utfall_hantlar", "benpress"]},
-        {"id": "leg_extension", "namn": "Leg extension", "set": 3, "reps": "10-15", "vikt": null, "rir_mal": 1, "vila_sek": 90, "kommentar": "Ny 2026-09-28. Kalibrera vikten första passet."},
+        {"id": "leg_extension", "namn": "Leg extension", "set": 3, "reps": "10-15", "vikt": null, "rir_mal": 1, "vila_sek": 90, "kommentar": "Ny sedan senaste avstämningen. Kalibrera vikten första passet."},
         {"id": "larcurl_liggande", "namn": "Lårcurl liggande", "set": 3, "reps": "10-15", "vikt": 40, "rir_mal": 1, "vila_sek": 90, "alternativ": ["sittande_larcurl"]},
         {"id": "vadpress", "namn": "Vadpress", "set": 4, "reps": "10-15", "vikt": 40, "rir_mal": 1, "vila_sek": 90, "alternativ": ["staende_vadlyft"]}
       ]

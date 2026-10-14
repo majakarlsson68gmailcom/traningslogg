@@ -7,10 +7,12 @@ lever i `coach/`. Flyttad från Claude Cowork 2026-09-03: coachen läser och skr
 direkt, inget manuellt led. Träningsbesluten är coachens och Majas — i kodläge ändrar
 Claude Code inte träningsinnehåll (program, principer, profil, avstämningar).
 
-**Det här är den publika kopian (portfolio).** `data/` innehåller påhittad exempeldata.
-Majas riktiga logg och program, liksom coachens profil, principer och beslutslogg
-(`coach/PROFIL.md`, `PRINCIPER.md`, `AVSTAMNINGAR.md`), finns bara i det privata repot.
-Lägg aldrig in riktig träningsdata här.
+**Det här är den publika kopian (portfolio).** `data/program.json` är ett påhittat
+exempelprogram och `data/logg/` är tom. Demons påhittade data ligger i `app/demo/` och byggs
+med `node scripts/bygg-demo.mjs` (se ARCHITECTURE.md, Demoläge). Majas riktiga logg och
+program, liksom coachens profil, principer och beslutslogg (`coach/PROFIL.md`,
+`PRINCIPER.md`, `AVSTAMNINGAR.md`), finns bara i det privata repot. Lägg aldrig in riktig
+träningsdata här.
 
 ## Läs först
 - `SPEC.md` — vad som ska byggas (v1-tabellen är kravet)

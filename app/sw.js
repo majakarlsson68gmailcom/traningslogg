@@ -5,7 +5,7 @@
 // enda ställe, js/program.js (nät → Contents API → IndexedDB). Cross-origin
 // (api.github.com) rörs aldrig.
 
-const CACHE = 'shell-v26';
+const CACHE = 'shell-v27';
 
 const SKAL = [
   './',
@@ -18,6 +18,8 @@ const SKAL = [
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
   './js/main.js',
+  './js/lage.js',
+  './js/demo.js',
   './js/store.js',
   './js/db.js',
   './js/program.js',

@@ -13,6 +13,7 @@ import {
 } from './db.js';
 import { setState } from './store.js';
 import { todayISO, LOPPASS_ID } from './format.js';
+import { AR_DEMO } from './lage.js';
 
 const TOKEN_NYCKEL = 'traningslogg:token';
 
@@ -36,7 +37,11 @@ export async function setRepoKonfig(konfig) {
   await setSetting('repo', konfig);
 }
 
+// I demoläget finns aldrig någon synk, oavsett vad som ligger i localStorage.
+// Allt som pratar med GitHub (synk, återläsning, programhämtning) frågar här
+// först, så spärren behövs bara på ett ställe.
 export async function harSynkKonfig() {
+  if (AR_DEMO) return false;
   return Boolean(getToken() && (await getRepoKonfig()));
 }
 

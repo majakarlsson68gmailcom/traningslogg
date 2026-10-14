@@ -28,6 +28,9 @@
 #    sync.js, tolkning i aterlasning.js). Samma tysthet som ovan: en radtyp som
 #    faller mellan stolarna skrivs som skräp till en logg ingen kan städa, eller
 #    försvinner vid återläsning utan att något säger ifrån.
+#
+# 5. test-demo.mjs — demons datumflytt. Exempelloggen flyttas till innevarande
+#    vecka när demon öppnas; går flytten fel syns det bara som en konstig vecka.
 name: Validera
 
 on:
@@ -39,6 +42,7 @@ on:
       - 'app/js/veckostatus.js'
       - 'app/js/sync.js'
       - 'app/js/aterlasning.js'
+      - 'app/js/demo.js'
       - 'scripts/**'
       - '.github/workflows/validera.yml'
   pull_request:
@@ -49,6 +53,7 @@ on:
       - 'app/js/veckostatus.js'
       - 'app/js/sync.js'
       - 'app/js/aterlasning.js'
+      - 'app/js/demo.js'
       - 'scripts/**'
       - '.github/workflows/validera.yml'
 
@@ -69,3 +74,4 @@ jobs:
       - run: node scripts/test-pb.mjs
       - run: node scripts/test-vecka.mjs
       - run: node scripts/test-loggrader.mjs
+      - run: node scripts/test-demo.mjs

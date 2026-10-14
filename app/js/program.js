@@ -7,6 +7,8 @@
 
 import { sparaProgram, hamtaProgram } from './db.js';
 import { hamtaFilFranApi, harSynkKonfig, getRepoKonfig } from './sync.js';
+import { AR_DEMO } from './lage.js';
+import { laddaDemo } from './demo.js';
 
 // Felrutan är enda diagnostiken som finns på en telefon — där går det inte att
 // öppna en konsol. Därför översätts API-svaret till något som pekar ut vad man
@@ -30,6 +32,7 @@ const TRASIG_JSON = (fel) => `data/program.json i repot är inte giltig JSON (${
 // tyst fallback betyder att telefonen kan visa ett inaktuellt program hur länge
 // som helst utan att någonting säger ifrån.
 export async function laddaProgram() {
+  if (AR_DEMO) return laddaDemo(); // exempelprogram och exempellogg, se demo.js
   let parseFel = null;
 
   try {

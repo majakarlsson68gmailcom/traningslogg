@@ -20,6 +20,8 @@ import {
   getToken, setToken, getRepoKonfig, setRepoKonfig, synka, uppdateraBadge, harSynkKonfig,
 } from '../sync.js';
 import { aterlas, aterlasVidBehov } from '../aterlasning.js';
+import { AR_DEMO } from '../lage.js';
+import { borjaOmDemo } from '../demo.js';
 import { begarNotisTillstand } from '../timer.js';
 import {
   markera, angraMarkering, markeradeFor, emittera, markeraHanterad,
@@ -40,6 +42,7 @@ export function render(state, rot) {
   const sektion = el(`
     <section class="valj-pass">
       <h1 class="display">Välj pass</h1>
+      ${AR_DEMO ? '<p class="demorad">Demo med påhittad data. Det du loggar sparas bara i den här webbläsaren.</p>' : ''}
       ${programVarning ? programvarningskortHtml(programVarning) : ''}
       ${veckoAvstamning ? avstamningskortHtml(veckoAvstamning, program) : ''}
       <h2 class="veckan-rubrik display">Veckan</h2>
@@ -53,7 +56,7 @@ export function render(state, rot) {
         ${program.lopning ? lopkortHtml(state) : ''}
       </div>
       <footer class="synkrad">
-        <span class="synk-badge ${osynkade ? 'har-osynkat' : ''}">${synkText(osynkade, synkStatus)}</span>
+        <span class="synk-badge ${osynkade && !AR_DEMO ? 'har-osynkat' : ''}">${synkText(osynkade, synkStatus)}</span>
         <button class="knapp-diskret" data-installningar>${IKON.reglage} Inställningar</button>
       </footer>
     </section>`);
@@ -500,6 +503,7 @@ async function bekraftaAvstamning(avstamning, program, skriv) {
 }
 
 function synkText(osynkade, synkStatus) {
+  if (AR_DEMO) return 'Demo · ingen synk';
   if (synkStatus === 'syncing') return 'Synkar …';
   if (!getToken()) return osynkade ? `${osynkade} osynkade · synk ej konfigurerad` : 'Synk ej konfigurerad';
   if (synkStatus === 'error') return `Synkfel · ${osynkade} osynkade`;
@@ -569,14 +573,8 @@ async function versionText() {
     <p>${styrd ? 'Sidan serveras av service workern.' : 'Ingen service worker styr sidan — allt hämtas från nätet.'}</p>`;
 }
 
-// Exporterad: main.js visar samma sheet ovanpå felrutan när programmet inte
-// kunde laddas. Utan token finns inget program, och utan program renderas inte
-// footern där sheeten annars öppnas — första starten vore en låst dörr.
-export function installningarSheet() {
-  const wrapper = el(`
-    <div class="installningar-wrapper">
-      <div class="installningar-backdrop" data-stang></div>
-      <div class="installningar-sheet" role="dialog" aria-label="Inställningar">
+function synkSektionerHtml() {
+  return `
         <h2 class="display">Synk</h2>
         <p>Fingranulär GitHub-token för endast detta repo, med behörigheten <strong>Contents: Read and write</strong>. Läsdelen behövs för programmet och historiken. Sparas bara på den här enheten.</p>
         <label>Repo (användare/repo)<input id="synk-repo" autocapitalize="none" autocomplete="off" placeholder="anvandare/traningsprojekt"></label>
@@ -585,7 +583,27 @@ export function installningarSheet() {
         <button class="knapp primar" data-spara>Spara ${IKON.bock}</button>
         <h2 class="display">Historik</h2>
         <p>Hämtar loggen ur repot till den här enheten — behövs på en ny telefon eller efter rensad webbläsardata. Läser bara, skriver ingenting.</p>
-        <button class="knapp-diskret" data-aterlas>${IKON.aterstall} Hämta historik från repot</button>
+        <button class="knapp-diskret" data-aterlas>${IKON.aterstall} Hämta historik från repot</button>`;
+}
+
+// I demon finns ingen synk att ställa in. Sektionen förklarar vad demon är och
+// låter besökaren börja om med exempeldatan.
+function demoSektionHtml() {
+  return `
+        <h2 class="display">Demo</h2>
+        <p>Appen visar ett påhittat program och några veckors påhittad logg. Det du loggar sparas bara i den här webbläsaren och skickas ingenstans.</p>
+        <button class="knapp-diskret" data-borja-om>${IKON.aterstall} Börja om med exempeldatan</button>`;
+}
+
+// Exporterad: main.js visar samma sheet ovanpå felrutan när programmet inte
+// kunde laddas. Utan token finns inget program, och utan program renderas inte
+// footern där sheeten annars öppnas — första starten vore en låst dörr.
+export function installningarSheet() {
+  const wrapper = el(`
+    <div class="installningar-wrapper">
+      <div class="installningar-backdrop" data-stang></div>
+      <div class="installningar-sheet" role="dialog" aria-label="Inställningar">
+        ${AR_DEMO ? demoSektionHtml() : synkSektionerHtml()}
         <h2 class="display">Notiser</h2>
         <div id="notis-sektion">${notisSektionHtml()}</div>
 
@@ -600,7 +618,7 @@ export function installningarSheet() {
     if (ruta) ruta.innerHTML = text;
   });
 
-  getRepoKonfig().then((konfig) => {
+  if (!AR_DEMO) getRepoKonfig().then((konfig) => {
     if (konfig) {
       wrapper.querySelector('#synk-repo').value = `${konfig.agare}/${konfig.repo}`;
       wrapper.querySelector('#synk-branch').value = konfig.branch;
@@ -618,6 +636,10 @@ export function installningarSheet() {
     // cachen är cache-first märks det inte att man kör gammal kod.
     if (e.target.closest('[data-uppdatera]')) {
       await tvingaUppdatering();
+      return;
+    }
+    if (e.target.closest('[data-borja-om]')) {
+      await borjaOmDemo();
       return;
     }
     if (e.target.closest('[data-notis]')) {
